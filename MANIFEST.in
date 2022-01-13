@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include aguacate_theme *.css
+recursive-include aguacate_theme *.csv
+recursive-include aguacate_theme *.html
+recursive-include aguacate_theme *.ico
+recursive-include aguacate_theme *.js
+recursive-include aguacate_theme *.json
+recursive-include aguacate_theme *.md
+recursive-include aguacate_theme *.png
+recursive-include aguacate_theme *.py
+recursive-include aguacate_theme *.svg
+recursive-include aguacate_theme *.txt
+recursive-exclude aguacate_theme *.pyc
