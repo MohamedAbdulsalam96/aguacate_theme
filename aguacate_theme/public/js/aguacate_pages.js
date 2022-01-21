@@ -53,6 +53,8 @@ frappe.ui.Page = class Page {
     setup_agucate(){
         console.log('Init agucate pages 2');
         this.setup_aguacate_help();
+		//exPage(this.wrapper);
+		console.log( frappe.get_route());
         //alert(2);
     }
 
@@ -95,15 +97,15 @@ frappe.ui.Page = class Page {
 		$(frappe.render_template(this.template_page, {})).appendTo(this.wrapper);
 		if (this.single_column) {
 			// nesting under col-sm-12 for consistency
-			this.add_view("main", '<div class="row layout-main">\
+			this.add_view("main", frappe.render_template('<div class="row layout-main">\
 					<div class="col-md-12 layout-main-section-wrapper">\
                         <div class="page-head flex aguacate"> <div class="container"> <div class="row flex align-center page-head-content justify-between"> <div class="col-md-4 col-sm-6 col-xs-8 page-title"> <!-- <div class="title-image hide hidden-md hidden-lg"></div> --> <!-- title --> <span class="sidebar-toggle-btn"> <svg class="icon icon-md sidebar-toggle-placeholder"> <use xlink:href="#icon-menu"></use> </svg> <span class="sidebar-toggle-icon"> <svg class="icon icon-md"> <use xlink:href="#icon-sidebar-collapse"> </use> </svg> </span> </span> <div class="flex fill-width title-area"> <div> <div class="flex"> <h3 class="ellipsis title-text"></h3> <span class="indicator-pill whitespace-nowrap"></span> </div> <div class="ellipsis sub-heading hide text-muted"></div> </div> <button class="btn btn-default more-button hide"> <svg class="icon icon-sm"> <use xlink:href="#icon-dot-horizontal"> </use> </svg> </button> </div> </div> <div class="flex col page-actions justify-content-end"> <!-- buttons --> <div class="custom-actions hide hidden-xs hidden-md"></div> <div class="standard-actions flex"> <span class="page-icon-group hide hidden-xs hidden-sm"></span> <div class="menu-btn-group hide"> <button type="button" class="btn btn-default icon-btn" data-toggle="dropdown" aria-expanded="false"> <span> <span class="menu-btn-group-label"> <svg class="icon icon-sm"> <use xlink:href="#icon-dot-horizontal"> </use> </svg> </span> </span> </button> <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul> </div> <button class="btn btn-secondary btn-default btn-sm hide"></button> <div class="actions-btn-group hide"> <button type="button" class="btn btn-primary btn-sm" data-toggle="dropdown" aria-expanded="false"> <span class="hidden-xs"> <span class="actions-btn-group-label">{%= __("Actions") %}</span> <svg class="icon icon-xs"> <use xlink:href="#icon-select"> </use> </svg> </span> </button> <ul class="dropdown-menu dropdown-menu-right" role="menu"> </ul> </div> <button class="btn btn-primary btn-sm hide primary-action"></button> </div> </div> </div> </div> </div>\
 						<div class="layout-main-section"></div>\
 						<div class="layout-footer hide"></div>\
 					</div>\
-				</div>');
+				</div>', {}));
 		} else {
-			this.add_view("main", `
+			this.add_view("main", frappe.render_template(`
 				<div class="row layout-main">
 					<div class="col-lg-2 layout-side-section"></div>
 					<div class="col layout-main-section-wrapper">
@@ -112,13 +114,14 @@ frappe.ui.Page = class Page {
 						<div class="layout-footer hide"></div>
 					</div>
 				</div>
-			`);
+			`,{}));
 		}
 
 		this.setup_page();
 	}
 
 	setup_page() {
+		console.log("page 1");
 		this.$title_area = this.wrapper.find(".title-area");
 
 		this.$sub_title_area = this.wrapper.find("h6");
@@ -860,12 +863,15 @@ frappe.ui.Page = class Page {
 	}
 	clear_fields() {
 		this.page_form.empty();
+		console.log("hiding 2");
 	}
 	show_form() {
 		this.page_form.removeClass("hide");
+		console.log("showing");
 	}
 	hide_form() {
 		this.page_form.addClass("hide");
+		console.log("hiding");
 	}
 	get_form_values() {
 		var values = {};

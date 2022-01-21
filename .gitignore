@@ -4,3 +4,5 @@
 *.swp
 tags
 aguacate_theme/docs/current
+node_modules
+aguacate_theme/public/node_modules

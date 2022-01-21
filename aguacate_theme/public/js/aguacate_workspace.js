@@ -13,6 +13,7 @@ frappe.standard_pages['Workspaces'] = function() {
 	});
 };
 
+
 frappe.views.Workspace = class Workspace {
 	constructor(wrapper) {
 		this.wrapper = $(wrapper);
@@ -225,6 +226,8 @@ class DesktopPage {
 	show() {
 		frappe.desk_page = this;
 		this.page.show();
+		$("#aguacate-container").remove();
+		this.aguacate_custom_widget.show();
 		if (this.sections.shortcuts) {
 			this.sections.shortcuts.widgets_list.forEach(wid => {
 				wid.set_actions();
@@ -234,11 +237,13 @@ class DesktopPage {
 
 	hide() {
 		this.page.hide();
+		this.aguacate_custom_widget.hide();
 	}
 
 	reload() {
 		this.in_customize_mode = false;
 		this.page && this.page.remove();
+		this.aguacate_custom_widget && this.aguacate_custom_widget.remove();
 		this.make();
 	}
 
@@ -261,6 +266,7 @@ class DesktopPage {
 
 	refresh() {
 		this.page.empty();
+		this.aguacate_custom_widget.empty();
 		this.allow_customization = this.data.allow_customization || false;
 
 		if (frappe.is_mobile()) {
@@ -347,6 +353,7 @@ class DesktopPage {
 			success: this.data.onboarding.success,
 			docs_url: this.data.onboarding.docs_url,
 			user_can_dismiss: this.data.onboarding.user_can_dismiss,
+			class_name: "animate__animated animate__zoomIn",
 			widget_type: 'onboarding',
 			container: this.page,
 			options: {
@@ -365,7 +372,7 @@ class DesktopPage {
 			container: this.page,
 			type: "chart",
 			columns: 1,
-			class_name: "widget-charts",
+			class_name: "widget-charts animate__animated animate__zoomIn",
 			hidden: Boolean(this.onboarding_widget),
 			options: {
 				allow_sorting: this.allow_customization,
@@ -384,6 +391,7 @@ class DesktopPage {
 			title: this.data.shortcuts.label || __('Your Shortcuts'),
 			container: this.page,
 			type: "shortcut",
+			class_name: "animate__animated animate__zoomIn",
 			columns: 3,
 			options: {
 				allow_sorting: this.allow_customization,
@@ -401,6 +409,7 @@ class DesktopPage {
 			title: this.data.cards.label || __("Reports & Masters"),
 			container: this.page,
 			type: "links",
+			class_name: "animate__animated animate__zoomIn",
 			columns: 3,
 			options: {
 				allow_sorting: this.allow_customization,
@@ -416,7 +425,7 @@ class DesktopPage {
 	}
 
     make_custom_widget() {
-		this.shtml = $('<h1>Hola tip</h1>');
-        this.shtml.appendTo(this.aguacate_custom_widget);
+		this.shtml = $(`<h1>Aguacate ${this.page_name}</h1>`);
+        this.aguacate_custom_widget.html(this.shtml);
 	}
 }
