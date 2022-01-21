@@ -13,8 +13,16 @@ app_license = "MIT"
 # ------------------
 
 # include js, css files in header of desk.html
+app_include_css = ["/assets/aguacate_theme/css/aguacate_theme.css", "/assets/aguacate_theme/css/animate.css"]
 # app_include_css = "/assets/aguacate_theme/css/aguacate_theme.css"
-# app_include_js = "/assets/aguacate_theme/js/aguacate_theme.js"
+app_include_js = [
+	"/assets/aguacate_theme/js/aguacate_pages.js",
+	"/assets/aguacate_theme/js/aguacate_workspace.js",
+	"/assets/aguacate_theme/js/customdocs.js",
+	"/assets/aguacate_theme/js/container.js"
+	]
+
+#page_js = {"background_jobs": "public/js/aguacate_workspace.js"}
 
 # include js, css files in header of web template
 # web_include_css = "/assets/aguacate_theme/css/aguacate_theme.css"
@@ -178,4 +186,6 @@ user_data_fields = [
 # auth_hooks = [
 # 	"aguacate_theme.auth.validate"
 # ]
+
+
 
