@@ -24,6 +24,8 @@ app_include_js = [
 
 #page_js = {"background_jobs": "public/js/aguacate_workspace.js"}
 
+base_template = "templates/base.html"
+
 # include js, css files in header of web template
 # web_include_css = "/assets/aguacate_theme/css/aguacate_theme.css"
 # web_include_js = "/assets/aguacate_theme/js/aguacate_theme.js"
