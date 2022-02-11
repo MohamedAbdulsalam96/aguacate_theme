@@ -4,7 +4,7 @@
 from __future__ import unicode_literals, print_function
 
 no_cache = 1
-base_template_path = "templates/www/app.html"
+base_template_path = "aguacate_theme/templates/www/app.html"
 
 import os, re
 import frappe

@@ -1,4 +1,4 @@
-{% extends "templates/web.html" %}
+{% extends "aguacate_theme/templates/web.html" %}
 
 {% block title %} Payment {% endblock %}
 
@@ -7,7 +7,7 @@
 
 {% block script %}
 <script src="https://js.stripe.com/v3/"></script>
-<script>{% include "templates/includes/integrations/stripe_checkout.js" %}</script>
+<script>{% include "aguacate_theme/templates/includes/integrations/stripe_checkout.js" %}</script>
 {% endblock %}
 
 {%- block page_content -%}

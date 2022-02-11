@@ -1,10 +1,10 @@
-{% extends "templates/web.html" %}
+{% extends "aguacate_theme/templates/web.html" %}
 
 {% block title %}{{ title or _("Message") }}{% endblock %}
 
 {% block page_content %}
 <style>
-{% include "templates/styles/card_style.css" %}
+{% include "aguacate_theme/templates/styles/card_style.css" %}
 {% if fullpage %}
 header, footer {
 	display: none;

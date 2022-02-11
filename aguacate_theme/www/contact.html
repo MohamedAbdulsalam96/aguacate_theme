@@ -1,4 +1,4 @@
-{% extends "templates/web.html" %}
+{% extends "aguacate_theme/templates/web.html" %}
 
 {% set title = heading or "Contact Us" %}
 {% block header %}<h1>{{ heading or "Contact Us" }}</h1>{% endblock %}
@@ -78,6 +78,6 @@
 	</div>
 </div>
 <script>
-	{% include "templates/includes/contact.js" %}
+	{% include "aguacate_theme/templates/includes/contact.js" %}
 </script>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "templates/web.html" %}
+{% extends "aguacate_theme/templates/web.html" %}
 
 {% block title %}
 	{{ title or (_("{0} List").format(_(doctype))) }}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-	{% include "templates/includes/breadcrumbs.html" %}
+	{% include "aguacate_theme/templates/includes/breadcrumbs.html" %}
 {% endblock %}
 
 {% block header_actions %}
@@ -25,11 +25,11 @@
 {% block page_content %}
 
 {% if introduction %}<p>{{ introduction }}</p>{% endif %}
-{% include list_template or "templates/includes/list/list.html" %}
+{% include list_template or "aguacate_theme/templates/includes/list/list.html" %}
 {% if list_footer %}{{ list_footer }}{% endif %}
 
 {% endblock %}
 
 {% block script %}
-<script>{% include "templates/includes/list/list.js" %}</script>
+<script>{% include "aguacate_theme/templates/includes/list/list.js" %}</script>
 {% endblock %}

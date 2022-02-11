@@ -1,4 +1,4 @@
-{% extends "templates/web.html" %}
+{% extends "aguacate_theme/templates/web.html" %}
 
 {% macro email_login_body() -%}
 <div class="page-card-body">
@@ -6,7 +6,7 @@
 		<label class="form-label sr-only" for="login_email">{{ login_label or _("Email")}}</label>
 		<div class="email-field">
 			<input type="text" id="login_email" class="form-control"
-				placeholder="{% if login_name_placeholder %}{{ login_name_placeholder  }}{% else %}{{ _('hola@aguacate.codes') }}{% endif %}"
+				placeholder="{% if login_name_placeholder %}{{ login_name_placeholder  }}{% else %}{{ _('jane@example.com') }}{% endif %}"
 				required autofocus>
 
 			<svg class="field-icon email-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -38,7 +38,8 @@
 	</div>
 
 	<p class="forgot-password-message">
-		<a href="#forgot">{{ _("Forgot Password?") }}</a></p>
+		<a href="#forgot">{{ _("Forgot Password?") }}</a>
+	</p>
 </div>
 
 <div class="page-card-actions">
@@ -58,8 +59,8 @@
 
 {% macro logo_section() %}
 <div class="page-card-head">
-	<img class="app-logo" src="{{ logo }}">
-	<h4>{{ _('Login to {0}').format(app_name or _("Frappe")) }}</h4>
+	<img class="app-logo" src="/assets/aguacate_theme/images/logo_aguacate.png">
+	<h4>{{ _('Login to {0}').format("Aguacate Cloud Apps") }}</h4>
 </div>
 {% endmacro %}
 
@@ -70,9 +71,56 @@
 		<div class="text-center my-5">
 			<h4>{{ _("Javascript is disabled on your browser") }}</h4>
 			<p class="text-muted">
-				{{ _("You need to enable JavaScript for your app to work.") }}<br>{{ _("To enable it follow the instructions in the following link: {0}").format("<a href='https://enable-javascript.com/'>enable-javascript.com</a></p>") }}
+				{{ _("You need to enable JavaScript for your app to work.") }}<br>{{ _("To enable it follow the
+				instructions in the following link: {0}").format("<a
+					href='https://enable-javascript.com/'>enable-javascript.com</a></p>") }}
 		</div>
 	</noscript>
+
+
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-sm-6 for-login">
+				<div class="login-content page-card">
+					{{ logo_section() }}
+					<form class="form-signin form-login" role="form">
+						{%- if social_login -%}
+						<div class="page-card-body">
+							<div class="social-logins text-center">
+								<div class="social-login-buttons">
+									{% for provider in provider_logins %}
+									<div class="login-button-wrapper">
+										<a href="{{ provider.auth_url }}"
+											class="btn btn-block btn-default btn-sm btn-login-option btn-{{ provider.name }}">
+											{% if provider.icon %}
+											{{ provider.icon }}
+											{% endif %}
+											{{ _("Login With {0}").format(provider.provider_name) }}</a>
+									</div>
+									{% endfor %}
+									<p class="text-muted login-divider">{{ _("or") }}</p>
+								</div>
+							</div>
+							<a href="#email" class="btn btn-block btn-default btn-sm btn-login-option">
+								{{ _("Login With Email") }}</a>
+						</div>
+						{% else %}
+						{{ email_login_body() }}
+						{%- endif -%}
+					</form>
+				</div>
+			</div>
+			<div class="col-sm-6 aguacate-login-msg">
+				<p class="tl-login">Everything you need in one place</p>
+				<p class="tl-login-sub">Aguacate Cloud Apps</p>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<!--
 	<section class='for-login'>
 		<div class="login-content page-card">
 			{{ logo_section() }}
@@ -110,13 +158,14 @@
 		</div>
 		{%- endif -%}
 	</section>
+-->
 
 	{%- if social_login -%}
 	<section class='for-email-login'>
 		<div class="login-content page-card">
 			{{ logo_section() }}
 			<form class="form-signin form-login" role="form">
-			{{ email_login_body() }}
+				{{ email_login_body() }}
 			</form>
 		</div>
 		{%- if not disable_signup -%}
@@ -141,12 +190,12 @@
 					<div class="form-group">
 						<label class="form-label sr-only" for="signup_email">Email</label>
 						<input type="email" id="signup_email" class="form-control"
-							placeholder="{{ _('hola@aguacate.cloud') }}" required>
+							placeholder="{{ _('jane@example.com') }}" required>
 					</div>
 				</div>
 				<div class="page-card-actions">
-					<button class="btn btn-sm btn-primary btn-block btn-signup"
-						type="submit">{{ _("Sign up") }}</button>
+					<button class="btn btn-sm btn-primary btn-block btn-signup" type="submit">{{ _("Sign up")
+						}}</button>
 
 					<p class="text-center sign-up-message">
 						<a href="#login" class="blue">{{ _("Have an account? Login") }}</a>
@@ -156,7 +205,8 @@
 			{%- else -%}
 			<div class='page-card-head mb-2'>
 				<span class='indicator gray'>{{_("Signup Disabled")}}</span>
-				<p class="text-muted text-normal sign-up-message mt-1 mb-8">{{_("Signups have been disabled for this website.")}}</p>
+				<p class="text-muted text-normal sign-up-message mt-1 mb-8">{{_("Signups have been disabled for this
+					website.")}}</p>
 				<div><a href='/' class='btn btn-primary btn-md'>{{ _("Home") }}</a></div>
 			</div>
 			{%- endif -%}
@@ -187,8 +237,8 @@
 					</div>
 				</div>
 				<div class="page-card-actions">
-					<button class="btn btn-sm btn-primary btn-block btn-forgot"
-						type="submit">{{ _("Reset Password") }}</button>
+					<button class="btn btn-sm btn-primary btn-block btn-forgot" type="submit">{{ _("Reset Password")
+						}}</button>
 					<p class="text-center sign-up-message">
 						<a href="#login">{{ _("Back to Login") }}</a>
 					</p>
@@ -201,7 +251,7 @@
 {% endblock %}
 
 {% block script %}
-<script>{% include "templates/includes/login/login.js" %}</script>
+<script>{% include "aguacate_theme/templates/includes/login/login.js" %}</script>
 {% endblock %}
 
 {% block sidebar %}{% endblock %}

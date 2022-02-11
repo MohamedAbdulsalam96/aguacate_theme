@@ -1,132 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Built on Frappe. https://frappeframework.com/ -->
+<html lang="en">
 
-		
-		{% block meta_block %}
-			{% include "templates/includes/meta_block.html" %}
-		{% endblock %}
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="frappe">
 
-		<meta name="description" content="A fun interactive coloring concept for changing colors on a mockup website" />
+	{% block meta_block %}
+	{% include "aguacate_theme/templates/includes/meta_block.html" %}
+	{% endblock %}
 
-		<meta name="keywords" content="coloring, drag and drop, svg, material design, mockup, website" />
+	<title>{% block title %}{{ title | striptags }}{% endblock %} - Aguacate Cloud</title>
 
-		<meta name="author" content="Aguacate Cloud" />
+	{% block favicon %}
+	<link rel="shortcut icon" href="/assets/aguacate_theme/images/logo_aguacate.png"
+		type="image/x-icon">
+	{% endblock %}
 
-		<title>{% block title %}{{ title | striptags }}{% endblock %} - Aguacate Cloud</title>
+	<!--href="{{ (favicon or "/assets/aguacate_theme/images/logo_aguacate.png") | abs_url }}"-->
+	<link rel="canonical" href="{{ canonical }}">
 
-		{% block favicon %}
-		<link
-			rel="shortcut icon"
-			href="{{ (favicon or "/assets/aguacate_theme/images/logo_aguacate.png") }}"
-			type="image/x-icon"
-		>
-		{% endblock %}
-		<link rel="stylesheet" type="text/css" href="/assets/aguacate_theme/aguacate/css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="/assets/aguacate_theme/aguacate/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="/assets/aguacate_theme/aguacate/css/aguacate_web.css" />
-		<script src="/assets/aguacate_theme/aguacate/js/modernizr.custom.js"></script>
+	{%- block head -%}
+	{% if head_html is defined -%}
+	{{ head_html or "" }}
+	{%- endif %}
 
-		{%- block head -%}
-				<!-- Font Awesome -->
-				<link
-				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-				rel="stylesheet"
-				/>
-				<!-- Google Fonts -->
-				<link
-				href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-				rel="stylesheet"
-				/>
-				<!-- MDB -->
-				<link
-				href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css"
-				rel="stylesheet"
-				/>
-		{% if head_html is defined -%}
-		{{ head_html or "" }}
-		{%- endif %}
-		{%- if theme.name != 'Standard' -%}
-		<link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
-		{%- else -%}
-		<link type="text/css" rel="stylesheet" href="/assets/aguacate_theme/aguacate/css/aguacate_base.css?ver={{ build_version }}">
-		{%- endif -%}
+	{%- if theme.name != 'Standard' -%}
+	<link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
+	{%- else -%}
+	<link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css?ver={{ build_version }}">
+	{%- endif -%}
 
-		{%- for link in web_include_css %}
-		<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}?ver={{ build_version }}">
-		{%- endfor -%}
+	<link type="text/css" rel="stylesheet" href="/assets/aguacate_theme/css/aguacate_web.css?ver={{ build_version }}">
+
+	{%- for link in web_include_css %}
+	<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}?ver={{ build_version }}">
+	{%- endfor -%}
 	{%- endblock -%}
 
 	{%- block head_include %}
-		{{ head_include or "" }}
+	{{ head_include or "" }}
 	{% endblock -%}
 
 	{%- block style %}
-		{% if colocated_css -%}
-			<style>{{ colocated_css }}</style>
-		{%- endif %}
+	{% if colocated_css -%}
+	<style>
+		{
+				{
+				colocated_css
+			}
+		}
+	</style>
+	{%- endif %}
 	{%- endblock -%}
+
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+	<!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet" />
 
 	<script>
 		window.frappe = {};
 		frappe.ready_events = [];
-		frappe.ready = function(fn) {
+		frappe.ready = function (fn) {
 			frappe.ready_events.push(fn);
 		}
 		window.dev_server = {{ dev_server }};
 		window.socketio_port = {{ (frappe.socketio_port or 'null') }};
 		window.show_language_picker = {{ show_language_picker }};
 	</script>
-	</head>
-	<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {%- endif %} class="{{ body_class or ''}}">
-		<div class="aguacate-container">
-			<div class="content">
-				<div class="mockup-browser">
-					<header>
-							{%- block navbar -%}
-								{{ web_block(
-									navbar_template or 'Standard Navbar',
-									values=_context_dict,
-									add_container=0,
-									add_top_padding=0,
-									add_bottom_padding=0,
-								) }}
-							{%- endblock -%}
-					</header>
-					<section>
-						<div class="mockup-grid">
-							<div class="mockup-grid__item">
-								{% block content %}
-									{{ content }}
-								{% endblock %}
-							</div>
-						</div><!-- /mockup-grid -->
-					</section>
+</head>
 
-					<section class="mockup-section--dark paint-area">
-						<div class="mockup-content">
-							{%- block footer -%}
-								{{ web_block(
-									footer_template or 'Standard Footer',
-									values=_context_dict,
-									add_container=0,
-									add_top_padding=0,
-									add_bottom_padding=0
-								) }}
-							{%- endblock -%}
-						</div><!-- /mockup-grid -->
-					</section>
-				</div><!-- /mockup-browser -->
-			</div><!-- /content -->
+<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}"
+	data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {%- endif
+	%} class="{{ body_class or ''}}">
+	{% include "public/icons/timeless/symbol-defs.svg" %}
+	{%- block banner -%}
+	{% include "aguacate_theme/templates/includes/banner_extension.html" ignore missing %}
 
-		</div><!-- /container -->
-		<script src="/assets/aguacate_theme/aguacate/js/classie.js"></script>
-		<script src="/assets/aguacate_theme/aguacate/js/interact-1.2.4.min.js"></script>
-		<script src="/assets/aguacate_theme/aguacate/js/main.js"></script>
-		{% block base_scripts %}
+	{% if banner_html -%}
+	{{ banner_html or "" }}
+	{%- endif %}
+	{%- endblock -%}
+
+	{%- block navbar -%}
+	{{ web_block(
+	navbar_template or 'Standard Navbar',
+	values=_context_dict,
+	add_container=0,
+	add_top_padding=0,
+	add_bottom_padding=0,
+	) }}
+	{%- endblock -%}
+
+	{% block content %}
+	{{ content }}
+	{% endblock %}
+
+	{%- block footer -%}
+	{{ web_block(
+	footer_template or 'Standard Footer',
+	values=_context_dict,
+	add_container=0,
+	add_top_padding=0,
+	add_bottom_padding=0
+	) }}
+	{%- endblock -%}
+
+	{% block base_scripts %}
 	<!-- js should be loaded in body! -->
 	<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/js/frappe-web.min.js?ver={{ build_version }}"></script>
@@ -148,11 +132,12 @@
 	{%- endfor -%}
 
 	{%- block script %}
-		{% if colocated_js -%}
-			<script>{{ colocated_js }}</script>
-		{%- endif %}
+	{% if colocated_js -%}
+	<script>{ { colocated_js } }</script>
+	{%- endif %}
 	{%- endblock %}
 	<!-- csrf_token -->
 	{%- block body_include %}{{ body_include or "" }}{% endblock -%}
-	</body>
+</body>
+
 </html>

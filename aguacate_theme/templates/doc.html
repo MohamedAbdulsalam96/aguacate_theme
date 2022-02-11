@@ -1,5 +1,5 @@
-{% extends "templates/base.html" %}
-{%- from "templates/includes/navbar/navbar_items.html" import render_item -%}
+{% extends "aguacate_theme/templates/base.html" %}
+{%- from "aguacate_theme/templates/includes/navbar/navbar_items.html" import render_item -%}
 
 {%- block head_include %}
 <link rel="stylesheet" href="/assets/frappe/css/hljs-night-owl.css">
@@ -46,7 +46,7 @@
 						{{ render_item(item, parent=True) }}
 						{%- endfor -%}
 					</ul>
-					{% include "templates/includes/web_sidebar.html" %}
+					{% include "aguacate_theme/templates/includes/web_sidebar.html" %}
 				</div>
 			</div>
 		</div>
@@ -68,7 +68,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 		<div class="sidebar-column col-sm-2">
 			<aside class="doc-sidebar">
 				{% block page_sidebar %}
-				{% include "templates/includes/web_sidebar.html" %}
+				{% include "aguacate_theme/templates/includes/web_sidebar.html" %}
 				{% endblock %}
 			</aside>
 		</div>
@@ -78,7 +78,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 				<main>
 					<div class="page_content page-content doc-content">
 						{%- if add_breadcrumbs -%}
-						{% include "templates/includes/breadcrumbs.html" %}
+						{% include "aguacate_theme/templates/includes/breadcrumbs.html" %}
 						{%- endif -%}
 						{%- block page_content -%}{%- endblock -%}
 					</div>

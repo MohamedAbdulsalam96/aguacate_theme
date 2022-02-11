@@ -40,7 +40,7 @@ def get(doctype, txt=None, limit_start=0, limit=20, pathname=None, **kwargs):
 		list_context.default_subtitle = _('Filtered by "{0}"').format(txt)
 
 	result = []
-	row_template = list_context.row_template or "templates/includes/list/row_template.html"
+	row_template = list_context.row_template or "aguacate_theme/templates/includes/list/row_template.html"
 	list_view_fields = [df for df in meta.fields if df.in_list_view][:4]
 
 	for doc in raw_result:

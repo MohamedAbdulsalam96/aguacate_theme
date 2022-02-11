@@ -14,8 +14,8 @@ from frappe.utils.jinja import is_rtl
 
 no_cache = 1
 
-base_template_path = "templates/www/printview.html"
-standard_format = "templates/print_formats/standard.html"
+base_template_path = "aguacate_theme/templates/www/printview.html"
+standard_format = "aguacate_theme/templates/print_formats/standard.html"
 
 def get_context(context):
 	"""Build context for print"""
@@ -405,7 +405,7 @@ def get_print_style(style=None, print_format=None, for_legacy=False):
 		"font": get_font(print_settings, print_format, for_legacy)
 	}
 
-	css = frappe.get_template("templates/styles/standard.css").render(context)
+	css = frappe.get_template("aguacate_theme/templates/styles/standard.css").render(context)
 
 	if style and frappe.db.exists('Print Style', style):
 		css = css + '\n' + frappe.db.get_value('Print Style', style, 'css')

@@ -1,4 +1,4 @@
-{% extends "templates/web.html" %}
+{% extends "aguacate_theme/templates/web.html" %}
 
 {% block title %}{{ _("Payment Success") }}{% endblock %}
 
@@ -20,7 +20,7 @@
 	{% endif %}
 </div>
 <style>
-{% include "templates/styles/card_style.css" %}
+{% include "aguacate_theme/templates/styles/card_style.css" %}
 </style>
 <script>
 	frappe.ready(function() {

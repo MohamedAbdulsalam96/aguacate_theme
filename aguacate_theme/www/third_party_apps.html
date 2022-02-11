@@ -1,4 +1,4 @@
-{% extends "templates/web.html" %}
+{% extends "aguacate_theme/templates/web.html" %}
 
 {% block title %} {{ _("Third Party Apps") }} {% endblock %}
 {% block header %}
@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_sidebar %}
-{% include "templates/includes/web_sidebar.html" %}
+{% include "aguacate_theme/templates/includes/web_sidebar.html" %}
 {% endblock %}
 
 {% block style %}
@@ -60,7 +60,7 @@
 {% endif %}
 <div class="padding"></div>
 <script>
-{% include "templates/includes/integrations/third_party_apps.js" %}
+{% include "aguacate_theme/templates/includes/integrations/third_party_apps.js" %}
 </script>
 
 {% endblock %}

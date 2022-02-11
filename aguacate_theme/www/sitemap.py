@@ -11,7 +11,7 @@ from six import iteritems
 from six.moves.urllib.parse import quote, urljoin
 
 no_cache = 1
-base_template_path = "templates/www/sitemap.xml"
+base_template_path = "aguacate_theme/templates/www/sitemap.xml"
 
 def get_context(context):
 	"""generate the sitemap XML"""
