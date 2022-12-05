@@ -1,0 +1,54 @@
+@media (min-width: 576px){
+    .for-login .page-card, .for-forgot .page-card, .for-signup .page-card, .for-email-login .page-card {
+        padding-top: 45px;
+        padding-bottom: 45px;
+        background-color: #fff;
+        box-shadow: none !important;
+    }
+}
+
+@media (max-width: 768px){
+    .aguacate-login-msg .tl-login{
+        font-size: 30px!important;
+        line-height: 1.1;
+    }
+}
+
+.web-footer {
+    background: #F9F8FA;
+}
+
+.aguacate-login-msg .tl-login{
+    font-size: 80px;
+    line-height: 1.1;
+}
+
+.aguacate-login-msg .tl-login-sub{
+    font-size: 20px;
+    line-height: 1.1;
+    color: #4CBDD1;
+    font-weight: 500;
+}
+
+.navbar-light{
+background: #7986cb;
+}
+
+.nav-link {
+    color: #fafafa !important;
+    text-decoration: none;
+    font-weight: 400 !important;
+    font-size: 18px!important;
+    margin-left: 5px;
+}
+
+.navbar-brand img{
+    max-height: 35px !important;
+}
+
+
+
+
+:root {
+    --aguacate-shadow-base: 0px 4px 8px rgba(25, 39, 52, 0.06), 0px 0px 4px rgba(25, 39, 52, 0.12)
+}

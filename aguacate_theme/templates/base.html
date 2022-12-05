@@ -1,57 +1,71 @@
 <!DOCTYPE html>
-<!-- Aguacate Cloud is Built on Frappe. https://frappeframework.com/ -->
+<!-- Built on Frappe. https://frappeframework.com/ -->
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="generator" content="Aguacate Cloud & Frappe">
+	<meta name="generator" content="frappe">
 
 	{% block meta_block %}
-		{% include "templates/includes/meta_block.html" %}
+	{% include "aguacate_theme/templates/includes/meta_block.html" %}
 	{% endblock %}
 
 	<title>{% block title %}{{ title | striptags }}{% endblock %} - Aguacate Cloud</title>
 
 	{% block favicon %}
-	<link
-		rel="shortcut icon"
-		href="{{ (favicon or "/assets/aguacate_theme/images/logo_aguacate.png") | abs_url }}"
-		type="image/x-icon"
-	>
+	<link rel="shortcut icon" href="/assets/aguacate_theme/images/logo_aguacate.png"
+		type="image/x-icon">
 	{% endblock %}
 
+	<!--href="{{ (favicon or "/assets/aguacate_theme/images/logo_aguacate.png") | abs_url }}"-->
 	<link rel="canonical" href="{{ canonical }}">
 
 	{%- block head -%}
-		{% if head_html is defined -%}
-		{{ head_html or "" }}
-		{%- endif %}
+	{% if head_html is defined -%}
+	{{ head_html or "" }}
+	{%- endif %}
 
-		{%- if theme.name != 'Standard' -%}
-		<link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
-		{%- else -%}
-		<link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css?ver={{ build_version }}">
-		{%- endif -%}
+	{%- if theme.name != 'Standard' -%}
+	<link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
+	{%- else -%}
+	<link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css?ver={{ build_version }}">
+	{%- endif -%}
 
-		{%- for link in web_include_css %}
-		<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}?ver={{ build_version }}">
-		{%- endfor -%}
+	<link type="text/css" rel="stylesheet" href="/assets/aguacate_theme/css/aguacate_web.css?ver={{ build_version }}">
+
+	{%- for link in web_include_css %}
+	<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}?ver={{ build_version }}">
+	{%- endfor -%}
 	{%- endblock -%}
 
 	{%- block head_include %}
-		{{ head_include or "" }}
+	{{ head_include or "" }}
 	{% endblock -%}
 
 	{%- block style %}
-		{% if colocated_css -%}
-			<style>{{ colocated_css }}</style>
-		{%- endif %}
+	{% if colocated_css -%}
+	<style>
+		{
+				{
+				colocated_css
+			}
+		}
+	</style>
+	{%- endif %}
 	{%- endblock -%}
+
+	<!-- Font Awesome -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+	<!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet" />
 
 	<script>
 		window.frappe = {};
 		frappe.ready_events = [];
-		frappe.ready = function(fn) {
+		frappe.ready = function (fn) {
 			frappe.ready_events.push(fn);
 		}
 		window.dev_server = {{ dev_server }};
@@ -59,38 +73,41 @@
 		window.show_language_picker = {{ show_language_picker }};
 	</script>
 </head>
-<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {%- endif %} class="{{ body_class or ''}}">
+
+<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}"
+	data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {%- endif
+	%} class="{{ body_class or ''}}">
 	{% include "public/icons/timeless/symbol-defs.svg" %}
 	{%- block banner -%}
-		{% include "templates/includes/banner_extension.html" ignore missing %}
+	{% include "aguacate_theme/templates/includes/banner_extension.html" ignore missing %}
 
-		{% if banner_html -%}
-		{{ banner_html or "" }}
-		{%- endif %}
+	{% if banner_html -%}
+	{{ banner_html or "" }}
+	{%- endif %}
 	{%- endblock -%}
 
 	{%- block navbar -%}
-		{{ web_block(
-			navbar_template or 'Standard Navbar',
-			values=_context_dict,
-			add_container=0,
-			add_top_padding=0,
-			add_bottom_padding=0,
-		) }}
+	{{ web_block(
+	navbar_template or 'Standard Navbar',
+	values=_context_dict,
+	add_container=0,
+	add_top_padding=0,
+	add_bottom_padding=0,
+	) }}
 	{%- endblock -%}
 
 	{% block content %}
-		{{ content }}
+	{{ content }}
 	{% endblock %}
 
 	{%- block footer -%}
-		{{ web_block(
-			footer_template or 'Standard Footer',
-			values=_context_dict,
-			add_container=0,
-			add_top_padding=0,
-			add_bottom_padding=0
-		) }}
+	{{ web_block(
+	footer_template or 'Standard Footer',
+	values=_context_dict,
+	add_container=0,
+	add_top_padding=0,
+	add_bottom_padding=0
+	) }}
 	{%- endblock -%}
 
 	{% block base_scripts %}
@@ -115,11 +132,12 @@
 	{%- endfor -%}
 
 	{%- block script %}
-		{% if colocated_js -%}
-			<script>{{ colocated_js }}</script>
-		{%- endif %}
+	{% if colocated_js -%}
+	<script>{ { colocated_js } }</script>
+	{%- endif %}
 	{%- endblock %}
 	<!-- csrf_token -->
 	{%- block body_include %}{{ body_include or "" }}{% endblock -%}
 </body>
+
 </html>

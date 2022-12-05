@@ -159,7 +159,17 @@ a:focus-visible {
     grid-area: links;
     padding: 0 0 0 3rem;
     justify-self: end;
+    font-size: 20px;
   }
+
+  .frame__links a {
+    color: #fff;
+  }
+
+  .frame__links a:hover{
+    color: #DB9908;
+  }
+
   .frame a {
     pointer-events: auto;
   }

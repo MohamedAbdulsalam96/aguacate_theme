@@ -63,5 +63,5 @@ def add_comment(comment, comment_email, comment_by, reference_doctype, reference
 	)
 
 	# revert with template if all clear (no backlinks)
-	template = frappe.get_template("templates/includes/comments/comment.html")
+	template = frappe.get_template("aguacate_theme/templates/includes/comments/comment.html")
 	return template.render({"comment": comment.as_dict()})

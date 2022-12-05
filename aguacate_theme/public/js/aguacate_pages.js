@@ -59,7 +59,7 @@ frappe.ui.Page = class Page {
     }
 
     setup_aguacate_help(){
-        $(".dropdown-help .nav-link").html('Create <span>        <svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>       </span>');
+        $(".dropdown-help .nav-link").html( __("Create") +` <span>        <svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>       </span>`);
     }
 
 	setup_scroll_handler() {

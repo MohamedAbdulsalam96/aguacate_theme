@@ -47,7 +47,7 @@ id="page-{{ name or route | e }}" data-path="{{ pathname | e }}"
 {% macro sidebar() %}
 <div class="sidebar-column col-sm-{{ columns }}">
 	{% block page_sidebar %}
-	{% include "templates/includes/web_sidebar.html" %}
+	{% include "aguacate_theme/templates/includes/web_sidebar.html" %}
 	{% endblock %}
 </div>
 {% endmacro %}
